@@ -1,5 +1,5 @@
 import React from "react";
-import placeholderImage from "./placeholderImage.png";
+import kontenImage from "../assets/konten.png";
 
 const ContentArticle = (props) => {
   return (
@@ -28,7 +28,7 @@ const ContentArticle = (props) => {
       <div className="box-border flex flex-col justify-start items-center self-stretch flex-grow-0 flex-shrink-0 relative gap-4 py-12">
         <img
           className="self-stretch flex-grow-0 flex-shrink-0 h-[400px] rounded-[5px] object-cover"
-          src={placeholderImage}
+          src={kontenImage}
         />
         <div className="box-border flex justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-2">
           <div className="self-stretch flex-grow-0 flex-shrink-0 w-0.5 bg-black" />

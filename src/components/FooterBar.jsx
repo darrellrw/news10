@@ -1,7 +1,9 @@
 import { useEffect } from 'react';
 import { initFlowbite } from 'flowbite'
+import { useNavigate } from "react-router-dom";
 
-export const FooterBar = () => {
+export const FooterBar = ({setCategory}) => {
+    const navigate = useNavigate();
     useEffect(() => {
         initFlowbite();
     }, []);
@@ -41,24 +43,42 @@ export const FooterBar = () => {
                         <div className="flex items-center justify-between">
                             <ul className="text-gray-400 font-medium space-y-[2vh]">
                                 <li>
-                                    <a href="#" className="hover:underline">Culture</a>
+                                    <div className='hover:underline' onClick={() => {
+                                        navigate("/", {replace: true})
+                                        setCategory("business")}}>Business
+                                    </div>
                                 </li>
                                 <li>
-                                    <a href="#" className="hover:underline">Fashion</a>
+                                    <div className='hover:underline' onClick={() => {
+                                        navigate("/", {replace: true})
+                                        setCategory("entertainment")}}>Entertainment
+                                    </div>
                                 </li>
                                 <li>
-                                    <a href="#" className="hover:underline">Featured</a>
+                                    <div className='hover:underline' onClick={() => {
+                                        navigate("/", {replace: true})
+                                        setCategory("health")}}>Health
+                                    </div>
                                 </li>
                             </ul>
                             <ul className="text-gray-400 font-medium space-y-[2vh]">
                                 <li>
-                                    <a href="#" className="hover:underline">Healthy Living</a>
+                                    <div className='hover:underline' onClick={() => {
+                                        navigate("/", {replace: true})
+                                        setCategory("science")}}>Science
+                                    </div>
                                 </li>
                                 <li>
-                                    <a href="#" className="hover:underline">Technology</a>
+                                    <div className='hover:underline' onClick={() => {
+                                        navigate("/", {replace: true})
+                                        setCategory("sports")}}>Sports
+                                    </div>
                                 </li>
                                 <li>
-                                    <a href="#" className="hover:underline">Food</a>
+                                    <div className='hover:underline' onClick={() => {
+                                        navigate("/", {replace: true})
+                                        setCategory("technology")}}>Technology
+                                    </div>
                                 </li>
                             </ul>
                         </div>

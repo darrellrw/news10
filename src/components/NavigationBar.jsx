@@ -1,7 +1,16 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from "react"
 import { initFlowbite } from 'flowbite'
+import { useNavigate } from "react-router-dom";
 
-export const NavigationBar = ({setCategory, setNation}) => {
+
+export const NavigationBar = ({setCategory, setNation, setSearch}) => {
+    const navigate = useNavigate();
+
+    const [message, setMessage] = useState("");
+
+    const handleChange = (event) => {
+        setMessage(event.target.value);
+    };
 
     useEffect(() => {
         initFlowbite();
@@ -36,24 +45,42 @@ export const NavigationBar = ({setCategory, setNation}) => {
                                 <div className='flex items-center justify-between mx-5'>
                                     <ul className="py-2 text-sm text-gray-700 space-y-[2vh]" aria-labelledby="dropdownLargeButton">
                                         <li>
-                                            <div className='block px-4 py-2 hover:bg-gray-100 hover:rounded-lg' onClick={() => setCategory("business")}>Business</div>
+                                            <div className='block px-4 py-2 hover:bg-gray-100 hover:rounded-lg' onClick={() => {
+                                                navigate("/", {replace: true})
+                                                setCategory("business") }}>Business
+                                            </div>
                                         </li>
                                         <li>
-                                            <div className='block px-4 py-2 hover:bg-gray-100 hover:rounded-lg' onClick={() => setCategory("entertainment")}>Entertainment</div>
+                                            <div className='block px-4 py-2 hover:bg-gray-100 hover:rounded-lg' onClick={() => {
+                                                navigate("/", {replace: true})
+                                                setCategory("entertainment")}}>Entertainment
+                                            </div>
                                         </li>
                                         <li>
-                                            <div className='block px-4 py-2 hover:bg-gray-100 hover:rounded-lg' onClick={() => setCategory("health")}>Health</div>
+                                            <div className='block px-4 py-2 hover:bg-gray-100 hover:rounded-lg' onClick={() => {
+                                                setCategory("health")
+                                                navigate("/", {replace: true})}}>Health
+                                            </div>
                                         </li>
                                     </ul>
                                     <ul className="py-2 px-5 text-sm text-gray-700 space-y-[2vh]" aria-labelledby="dropdownLargeButton">
                                         <li>
-                                            <div className='block px-4 py-2 hover:bg-gray-100 hover:rounded-lg' onClick={() => setCategory("science")}>Science</div>
+                                            <div className='block px-4 py-2 hover:bg-gray-100 hover:rounded-lg' onClick={() => {
+                                                navigate("/", {replace: true})
+                                                setCategory("science")}}>Science
+                                            </div>
                                         </li>
                                         <li>
-                                            <div className='block px-4 py-2 hover:bg-gray-100 hover:rounded-lg' onClick={() => setCategory("sports")}>Sports</div>
+                                            <div className='block px-4 py-2 hover:bg-gray-100 hover:rounded-lg' onClick={() => {
+                                                navigate("/", {replace: true})
+                                                setCategory("sports")}}>Sports
+                                            </div>
                                         </li>
                                         <li>
-                                            <div className='block px-4 py-2 hover:bg-gray-100 hover:rounded-lg' onClick={() => setCategory("technology")}>Technology</div>
+                                            <div className='block px-4 py-2 hover:bg-gray-100 hover:rounded-lg' onClick={() => {
+                                                navigate("/", {replace: true})
+                                                setCategory("technology")}}>Technology
+                                            </div>
                                         </li>
                                     </ul>
                                 </div>
@@ -63,24 +90,42 @@ export const NavigationBar = ({setCategory, setNation}) => {
                                 <div className='flex items-center justify-between mx-5'>
                                     <ul className="py-2 text-sm text-gray-700 space-y-[2vh]" aria-labelledby="dropdownLargeButton">
                                         <li>
-                                            <div className='block px-4 py-2 hover:bg-gray-100 hover:rounded-lg' onClick={() => setNation("us")}>America</div>
+                                            <div className='block px-4 py-2 hover:bg-gray-100 hover:rounded-lg' onClick={() => {
+                                                navigate("/", {replace: true})
+                                                setNation("us")}}>America
+                                            </div>
                                         </li>
                                         <li>
-                                            <div className='block px-4 py-2 hover:bg-gray-100 hover:rounded-lg' onClick={() => setNation("jp")}>Japan</div>
+                                            <div className='block px-4 py-2 hover:bg-gray-100 hover:rounded-lg' onClick={() => {
+                                                navigate("/", {replace: true})
+                                                setNation("jp")}}>Japan
+                                            </div>
                                         </li>
                                         <li>
-                                            <div className='block px-4 py-2 hover:bg-gray-100 hover:rounded-lg' onClick={() => setNation("id")}>Indonesia</div>
+                                            <div className='block px-4 py-2 hover:bg-gray-100 hover:rounded-lg' onClick={() => {
+                                                navigate("/", {replace: true})
+                                                setNation("id")}}>Indonesia
+                                            </div>
                                         </li>
                                     </ul>
                                     <ul className="py-2 px-5 text-sm text-gray-700 space-y-[2vh]" aria-labelledby="dropdownLargeButton">
                                         <li>
-                                            <div className='block px-4 py-2 hover:bg-gray-100 hover:rounded-lg' onClick={() => setNation("gb")}>Britain</div>
+                                            <div className='block px-4 py-2 hover:bg-gray-100 hover:rounded-lg' onClick={() => {
+                                                navigate("/", {replace: true})
+                                                setNation("gb")}}>Britain
+                                            </div>
                                         </li>
                                         <li>
-                                            <div className='block px-4 py-2 hover:bg-gray-100 hover:rounded-lg' onClick={() => setNation("in")}>India</div>
+                                            <div className='block px-4 py-2 hover:bg-gray-100 hover:rounded-lg' onClick={() => {
+                                                navigate("/", {replace: true})
+                                                setNation("in")}}>India
+                                            </div>
                                         </li>
                                         <li>
-                                            <div className='block px-4 py-2 hover:bg-gray-100 hover:rounded-lg' onClick={() => setNation("de")}>Germany</div>
+                                            <div className='block px-4 py-2 hover:bg-gray-100 hover:rounded-lg' onClick={() => {
+                                                navigate("/", {replace: true})
+                                                setNation("de")}}>Germany
+                                            </div>
                                         </li>
                                     </ul>
                                 </div>
@@ -90,15 +135,17 @@ export const NavigationBar = ({setCategory, setNation}) => {
                             <a href="#" className="text-white hover:bg-gray-100">About</a>
                         </li>
                         <li className='flex w-full'>
-                            <form className='w-full'>
-                                <div className="relative w-full">
-                                    <input type="search" id="search-dropdown" className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-s-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500" placeholder="Search Something..." required></input>
-                                    <button type="submit" className="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-white bg-blue-700 rounded-e-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                        <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/></svg>
-                                        <span className="sr-only">Search</span>
-                                    </button>
-                                </div>
-                            </form>
+
+                            <div className="relative w-full">
+                                <input onChange={handleChange} type="search" id="search-dropdown" className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-s-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500" placeholder="Search Something..." required></input>
+                                <button onClick={() => {
+                                    navigate("/", {replace: true})
+                                    setSearch(message)}} type="submit" className="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-white bg-blue-700 rounded-e-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                    <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/></svg>
+                                    <span className="sr-only">Search</span>
+                                </button>
+                            </div>
+                            
                         </li>
                         <li>
                             <button className="flex items-center">

@@ -8,7 +8,7 @@ export const FooterBar = () => {
 
     return (
         <footer className="bg-[#181823] py-4 bottom-0">
-            <div className="md:mx-[25%] mx-[5%]">
+            <div className="xl:mx-[15%] md:mx-[10%] mx-[5%]">
                 <div className="flex flex-col gap-8 2xl:flex-row">
                     <div className="flex-auto 2xl:w-32">
                         <h2 className="mb-6 text-sm font-semibold text-white uppercase">Social Media</h2>

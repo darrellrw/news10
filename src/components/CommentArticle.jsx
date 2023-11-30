@@ -1,113 +1,78 @@
-import { useEffect} from "react"
-import { initFlowbite } from 'flowbite'
+import React, { useState, useEffect } from 'react';
+import { initFlowbite } from 'flowbite';
 
 export const CommentArticle = () => {
+  const [comment, setComment] = useState('');
 
-    useEffect(() => {
-        initFlowbite();
-    }, []);
+  useEffect(() => {
+    const storedComment = localStorage.getItem('comment');
+    if (storedComment) {
+      setComment(storedComment);
+    }
 
-    return (
-        <div className="box-border flex justify-start items-start flex-grow-0 flex-shrink-0 w-[1431px] h-[678px]">
-            <div className="box-border flex justify-start items-start flex-grow-0 flex-shrink-0 w-[1431px] h-[678px] overflow-hidden gap-20 px-16 py-28 bg-[#de5959]">
-                <div className="box-border flex flex-col justify-start items-start flex-grow basis-full gap-6">
-                    <div className="box-border flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-2">
-                        <p className="whitespace-pre-wrap flex-grow-0 flex-shrink-0 self-stretch leading-[1.5] text-left text-black">
-                        <span className="whitespace-pre-wrap flex-grow-0 flex-shrink-0 self-stretch font-['Roboto'] text-[32px] leading-[1.5] font-medium text-left text-black">
-                            A
-                        </span>
-                        <span className="whitespace-pre-wrap flex-grow-0 flex-shrink-0 self-stretch font-['Roboto'] text-[32px] leading-[1.5] font-medium text-left text-black">
-                            d
-                        </span>
-                        <span className="whitespace-pre-wrap flex-grow-0 flex-shrink-0 self-stretch font-['Roboto'] text-[32px] leading-[1.5] font-medium text-left text-black">
-                            d
-                        </span>
-                        <span className="whitespace-pre-wrap flex-grow-0 flex-shrink-0 self-stretch font-['Roboto'] text-[32px] leading-[1.5] font-medium text-left text-black">
-                            {" "}
-                        </span>
-                        <span className="whitespace-pre-wrap flex-grow-0 flex-shrink-0 self-stretch font-['Roboto'] text-[32px] leading-[1.5] font-medium text-left text-black">
-                            A
-                        </span>
-                        <span className="whitespace-pre-wrap flex-grow-0 flex-shrink-0 self-stretch font-['Roboto'] text-[32px] leading-[1.5] font-medium text-left text-black">
-                            {" "}
-                        </span>
-                        <span className="whitespace-pre-wrap flex-grow-0 flex-shrink-0 self-stretch font-['Roboto'] text-[32px] leading-[1.5] font-medium text-left text-black">
-                            C
-                        </span>
-                        <span className="whitespace-pre-wrap flex-grow-0 flex-shrink-0 self-stretch font-['Roboto'] text-[32px] leading-[1.5] font-medium text-left text-black">
-                            o
-                        </span>
-                        <span className="whitespace-pre-wrap flex-grow-0 flex-shrink-0 self-stretch font-['Roboto'] text-[32px] leading-[1.5] font-medium text-left text-black">
-                            m
-                        </span>
-                        <span className="whitespace-pre-wrap flex-grow-0 flex-shrink-0 self-stretch font-['Roboto'] text-[32px] leading-[1.5] font-medium text-left text-black">
-                            m
-                        </span>
-                        <span className="whitespace-pre-wrap flex-grow-0 flex-shrink-0 self-stretch font-['Roboto'] text-[32px] leading-[1.5] font-medium text-left text-black">
-                            e
-                        </span>
-                        <span className="whitespace-pre-wrap flex-grow-0 flex-shrink-0 self-stretch font-['Roboto'] text-[32px] leading-[1.5] font-medium text-left text-black">
-                            n
-                        </span>
-                        <span className="whitespace-pre-wrap flex-grow-0 flex-shrink-0 self-stretch font-['Roboto'] text-[32px] leading-[1.5] font-medium text-left text-black">
-                            t
-                        </span>
-                        <span className="whitespace-pre-wrap flex-grow-0 flex-shrink-0 self-stretch font-['Roboto'] text-[32px] leading-[1.5] font-medium text-left text-black">
-                            {" "}
-                        </span>
-                        <span className="whitespace-pre-wrap flex-grow-0 flex-shrink-0 self-stretch font-['Roboto'] text-[32px] leading-[1.5] font-medium text-left text-black">
-                            :
-                        </span>
-                        <span className="whitespace-pre-wrap flex-grow-0 flex-shrink-0 self-stretch font-['Roboto'] text-[32px] leading-[1.5] font-medium text-left text-black">
-                            {" "}
-                        </span>
-                        <br />
-                        <br />
-                        <br />
-                        <span className="whitespace-pre-wrap flex-grow-0 flex-shrink-0 self-stretch font-['Roboto'] text-base leading-[1.5] text-left text-black">
-                            N
-                        </span>
-                        <span className="whitespace-pre-wrap flex-grow-0 flex-shrink-0 self-stretch font-['Roboto'] text-base leading-[1.5] text-left text-black">
-                            a
-                        </span>
-                        <span className="whitespace-pre-wrap flex-grow-0 flex-shrink-0 self-stretch font-['Roboto'] text-base leading-[1.5] text-left text-black">
-                            m
-                        </span>
-                        <span className="whitespace-pre-wrap flex-grow-0 flex-shrink-0 self-stretch font-['Roboto'] text-base leading-[1.5] text-left text-black">
-                            e
-                        </span>
-                        </p>
-                        <div className="box-border flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 h-12 gap-2 p-3 rounded-[5px] bg-white border border-black" />
-                    </div>
-                    <div className="box-border flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-2">
-                        <p className="whitespace-pre-wrap flex-grow-0 flex-shrink-0 self-stretch font-['Roboto'] text-base leading-[1.5] text-left text-black">
-                        Email
-                        </p>
-                        <div className="box-border flex justify-start items-center self-stretch flex-grow-0 flex-shrink-0 h-12 gap-2 p-3 rounded-[5px] bg-white border border-black" />
-                    </div>
-                    <div className="box-border flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative gap-2">
-                        <p className="whitespace-pre-wrap flex-grow-0 flex-shrink-0 self-stretch font-['Roboto'] text-base leading-[1.5] text-left text-black">
-                        Message
-                        </p>
-                        <div className="box-border flex justify-start items-start self-stretch flex-grow-0 flex-shrink-0 h-[180px] relative p-3 rounded-[5px] bg-white border border-black">
-                        <p className="whitespace-pre-wrap flex-grow font-['Roboto'] text-base leading-[1.5] text-left text-[#505050]">
-                            Type your message...
-                        </p>
-                        </div>
-                    </div>
-                    <div className="box-border flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-3 pb-4">
-                        <div className="box-border block flex-grow-0 flex-shrink-0 w-[18px] h-[18px] relative overflow-hidden bg-white border border-black" />
-                        <p className="whitespace-pre-wrap flex-grow-0 flex-shrink-0 font-['Roboto'] text-sm leading-[1.5] text-left text-black">
-                        I accept the Terms
-                        </p>
-                    </div>
-                    <div className="box-border flex justify-center items-center flex-grow-0 flex-shrink-0 relative gap-2 px-6 py-3 rounded-[5px] bg-black border border-black">
-                        <p className="whitespace-pre-wrap flex-grow-0 flex-shrink-0 font-['Roboto'] text-base leading-[1.5] text-left text-white">
-                        Submit
-                        </p>
-                    </div>
-                </div>
+    initFlowbite();
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('comment', comment);
+  }, [comment]);
+
+  const handleCommentChange = (e) => {
+    setComment(e.target.value);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch('https://example.com/api/comments', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ comment }),
+      });
+
+      if (response.ok) {
+        console.log('Komentar berhasil dikirim ke server');
+      } else {
+        console.error('Gagal mengirim komentar ke server');
+      }
+    } catch (error) {
+      console.error('Terjadi kesalahan:', error);
+    }
+  };
+
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <div className="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
+          <div className="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
+            <label htmlFor="comment" className="sr-only">
+              Your comment
+            </label>
+            <textarea
+              id="comment"
+              rows="4"
+              value={comment}
+              onChange={handleCommentChange}
+              className="w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
+              placeholder="Write a comment..."
+              required
+            ></textarea>
+          </div>
+          <div className="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
+            <button
+              type="submit"
+              className="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"
+            >
+              Post comment
+            </button>
+            <div className="flex ps-0 space-x-1 rtl:space-x-reverse sm:ps-2">
+              {/* Add the other buttons with their respective SVG icons here */}
             </div>
+          </div>
         </div>
-    )
-}
+      </form>
+    </div>
+  );
+};

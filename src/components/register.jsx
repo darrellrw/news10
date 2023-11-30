@@ -4,32 +4,22 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     try {
-      const response = await fetch("https://dummyjson.com/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: email,
-          password: password,
-        }),
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        console.log("Login successful");
-        // Store user data in local storage
-        localStorage.setItem("user", JSON.stringify(data.user));
-      } else {
-        const errorData = await response.json(); // Try to get more details about the error
-        console.error("Login failed:", errorData);
+      // Check if email and password are not null
+      if (!email || !password) {
+        throw window.alert("Email dan password harus diisi!");
       }
+
+      // Store user data in local storage
+      localStorage.setItem("email", email);
+      localStorage.setItem("password", password);
+
+      window.alert("Registrasi Sukses");
     } catch (error) {
-      console.error("An error occurred during login:", error);
+      window.alert("Terdapat kesalahan saat registrasi", error.message);
     }
   };
 
@@ -108,7 +98,7 @@ const Register = () => {
 
               {/* Submit button */}
               <button
-                type="button"
+                type="submit"
                 className="inline-block w-full rounded bg-0766AD px-7 pb-2.5 pt-3 text-sm font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-0766AD-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-0766AD-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-0766AD-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
                 style={{ backgroundColor: "#0766AD" }}>
                 Register
@@ -154,7 +144,8 @@ const Register = () => {
                 Have an account?{" "}
                 <a
                   href="#!"
-                  className="text-danger transition duration-150 ease-in-out hover:text-danger-600 focus:text-danger-600 active:text-danger-700">
+                  className="text-danger transition duration-150 ease-in-out hover:text-danger-600 focus:text-danger-600 active:text-danger-700 underline"
+                  style={{ color: "#0766AD" }}>
                   Login
                 </a>
               </p>

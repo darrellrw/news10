@@ -4,32 +4,23 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     try {
-      const response = await fetch("https://dummyjson.com/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: email,
-          password: password,
-        }),
-      });
+      const storedEmail = localStorage.getItem("email");
+      const storedPassword = localStorage.getItem("password");
 
-      if (response.ok) {
-        const data = await response.json();
-        console.log("Login successful");
-        // Store user data in local storage
-        localStorage.setItem("user", JSON.stringify(data.user));
+      if (!email || !password) {
+        throw new Error("Email dan password harus diisi!");
+      }
+      if (email === storedEmail && password === storedPassword) {
+        window.alert("Login Sukses");
       } else {
-        const errorData = await response.json(); // Try to get more details about the error
-        console.error("Login failed:", errorData);
+        window.alert("Email atau password tidak valid!");
       }
     } catch (error) {
-      console.error("An error occurred during login:", error);
+      window.alert("Terdapat kesalahan saat login: " + error.message);
     }
   };
 
@@ -154,7 +145,8 @@ const Login = () => {
                 Don't Have an account?{" "}
                 <a
                   href="#!"
-                  className="text-danger transition duration-150 ease-in-out hover:text-danger-600 focus:text-danger-600 active:text-danger-700">
+                  className="text-danger transition duration-150 ease-in-out hover:text-danger-600 focus:text-danger-600 active:text-danger-700 underline"
+                  style={{ color: "#0766AD" }}>
                   Register
                 </a>
               </p>

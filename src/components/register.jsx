@@ -4,10 +4,33 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Lakukan registrasi atau tindakan lain sesuai kebutuhan
-    console.log("Email:", email, "Password:", password);
+
+    try {
+      const response = await fetch("https://dummyjson.com/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Login successful");
+        // Store user data in local storage
+        localStorage.setItem("user", JSON.stringify(data.user));
+      } else {
+        const errorData = await response.json(); // Try to get more details about the error
+        console.error("Login failed:", errorData);
+      }
+    } catch (error) {
+      console.error("An error occurred during login:", error);
+    }
   };
 
   return (

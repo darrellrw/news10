@@ -27,8 +27,8 @@ import Register from "./components/register";
 const App = () => {
   return (
     <div>
-      {/* <Login /> */}
-      <Register />
+      <Login />
+      {/* <Register /> */}
     </div>
   );
 };

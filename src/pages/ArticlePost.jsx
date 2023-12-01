@@ -11,25 +11,14 @@ export default function ArticlePost() {
 
     const [articles, setArticles] = useState([]);
     const [params, setParams] = useSearchParams();
-
     
-    useEffect(() => {
-        let urlNews = `https://newsdata.io/api/1/news?apikey=${import.meta.env.VITE_THE_KEYS}&qInTitle="${params.get("title").replace(/-/g, "%20")}"`
-        console.log(urlNews)
-    
-        console.log(location.state)
-    
+    useEffect(() => {        
         if(location.state == null) {
+            let urlNews = `https://newsdata.io/api/1/news?apikey=${import.meta.env.VITE_THE_KEYS}&qInTitle="${params.get("title").replace(/-/g, "%20")}"`
             console.log("Hallo")
+            fetch(urlNews).then(response => response.json()).then(data => setArticles(data.results))
         }
-    
-        console.log("Hallo")
-        
-        fetch(urlNews).then(response => response.json()).then(data => setArticles(data.results))
-        console.log(articles)
     }, [articles, location.state, params]);
-
-
 
     return (
         <>

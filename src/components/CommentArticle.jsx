@@ -13,33 +13,14 @@ export const CommentArticle = () => {
     initFlowbite();
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem('comment', comment);
-  }, [comment]);
-
   const handleCommentChange = (e) => {
     setComment(e.target.value);
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      const response = await fetch('https://example.com/api/comments', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ comment }),
-      });
-
-      if (response.ok) {
-        console.log('Komentar berhasil dikirim ke server');
-      } else {
-        console.error('Gagal mengirim komentar ke server');
-      }
-    } catch (error) {
-      console.error('Terjadi kesalahan:', error);
-    }
+    localStorage.setItem('comment', comment);
+    console.log('Comment successfully saved to local storage');
   };
 
   return (

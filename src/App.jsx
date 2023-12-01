@@ -1,40 +1,40 @@
 import './App.css'
-import { BrowserRouter, Routes, Route} from 'react-router-dom'
+import { initFlowbite } from 'flowbite'
+import { useEffect } from "react"
+import { createBrowserRouter, createRoutesFromElements, RouterProvider, Route } from 'react-router-dom'
+
+import RootLayout from './layouts/RootLayout'
+
+import ArticleBoard from './components/ArticleBoard'
 import ArticlePost from './pages/ArticlePost'
+
+import About from './pages/About'
+import Error from './pages/Error'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import SavedPost from './pages/SavedPost'
 
-import { initFlowbite } from 'flowbite'
-
-import { useEffect, useState } from "react"
-
-import { NavigationBar } from './components/NavigationBar'
-import { FooterBar } from './components/FooterBar'
-
-import { ArticleBoard } from './components/ArticleBoard'
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path='/' element={<RootLayout/>}>
+      <Route index element={<ArticleBoard/>}/>
+      <Route path='/article' element={<ArticlePost/>}/>
+      <Route path='/login' element={<Login/>}/>
+      <Route path='/register' element={<Register/>}/>
+      <Route path='/saved' element={<SavedPost/>}/>
+      <Route path='/about' element={<About/>}/>
+      <Route path='*' element={<Error/>}/>
+    </Route>
+  )
+)
 
 function App() {
-  const [category, setCategory] = useState("general");
-  const [nation, setNation] = useState("us");
-  const [search, setSearch] = useState("");
-
   useEffect(() => {
     initFlowbite();
   }, []);
 
   return (
-    <div className="flex flex-col h-screen justify-between">
-      <BrowserRouter>
-        <NavigationBar setCategory={setCategory} setSearch={setSearch} setNation={setNation}/>
-        <Routes>
-          <Route path='/' element={<ArticleBoard category={category} nation={nation} search={search}/>}/>
-          <Route path='/article' element={<ArticlePost/>}/>
-          <Route path='/login' element={<Login/>}/>
-          <Route path='/register' element={<Register/>}/>
-        </Routes>
-        <FooterBar setCategory={setCategory}/>
-      </BrowserRouter>
-    </div>
+      <RouterProvider router={router}/>
   )
 }
 

@@ -1,32 +1,42 @@
 import { useEffect, useState } from "react"
-import { initFlowbite } from 'flowbite'
+import { useSearchParams } from "react-router-dom";
+
 import { ArticleCard } from "./ArticleCard";
 
-export const ArticleBoard = ({category, nation, search}) => {
+export default function ArticleBoard() {
     const [articles, setArticles] = useState([]);
 
-    useEffect(() => {
-        initFlowbite();
+    const [params, setParams] = useSearchParams();
+    const category = params.get("category") == null ? "top": params.get("category");
+    const nation = params.get("nation") == null ? "us": params.get("nation");
 
+    useEffect(() => {
         let urlNews = "";
 
-        if(search == "") {
-            urlNews = `https://newsapi.org/v2/top-headlines?country=${nation}&category=${category}&apiKey=${import.meta.env.VITE_NEWS_API_KEY}`;
+        if (params.get("search") == null) {
+            urlNews = `https://newsdata.io/api/1/news?apikey=${import.meta.env.VITE_THE_KEYS}&country=${nation}&category=${category}`
         } else {
-            urlNews = `https://newsapi.org/v2/everything?q=${search}&apiKey=${import.meta.env.VITE_NEWS_API_KEY}`;
+            urlNews = `https://newsdata.io/api/1/news?apikey=${import.meta.env.VITE_THE_KEYS}&qInTitle=${params.get("search")}`
         }
         
-        fetch(urlNews).then(response => response.json()).then(data => setArticles(data.articles));
+        fetch(urlNews).then(response => response.json()).then(data => setArticles(data.results));
+        console.log(articles)
 
-    }, [category, nation, search]);
+    }, [category, nation]);
 
     return (
         <>
             <div className="items-center m-auto">
                 <h2 className="text-center">Kumpulan Berita</h2>
-                {articles.map((news, index) => {
-                    return <ArticleCard key={index} data={news}/>
-                })}
+                {
+                    articles.length == 0 ? (
+                        <p>Empty</p>
+                    ) : (
+                        articles.map((news, index) => {
+                            return <ArticleCard key={index} data={news}/>
+                        })
+                    )
+                }
             </div>
 
         </>

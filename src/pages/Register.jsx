@@ -16,6 +16,7 @@ const Register = () => {
       // Store user data in local storage
       localStorage.setItem("email", email);
       localStorage.setItem("password", password);
+      localStorage.setItem("islogin", false);
 
       window.alert("Registrasi Sukses");
     } catch (error) {

@@ -15,6 +15,7 @@ const Login = () => {
         throw new Error("Email dan password harus diisi!");
       }
       if (email === storedEmail && password === storedPassword) {
+        localStorage.setItem("islogin", true);
         window.alert("Login Sukses");
       } else {
         window.alert("Email atau password tidak valid!");

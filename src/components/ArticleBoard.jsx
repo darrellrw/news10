@@ -19,8 +19,16 @@ export default function ArticleBoard() {
             urlNews = `https://newsdata.io/api/1/news?apikey=${import.meta.env.VITE_THE_KEYS}&qInTitle=${params.get("search")}`
         }
         
-        fetch(urlNews).then(response => response.json()).then(data => setArticles(data.results));
 
+        fetch(urlNews).then(response => 
+            {
+                if (response.status >= 400) {
+                    throw new Error("Server responds with error!");
+                } else {
+                    response.json()
+                }
+            }
+        ).then(data => setArticles(data.results));
     }, [category, nation]);
 
     return (

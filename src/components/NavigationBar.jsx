@@ -6,11 +6,19 @@ export const NavigationBar = () => {
     const navigate = useNavigate();
 
     const [params, setParams] = useSearchParams();
+    const storedLogin = localStorage.getItem("islogin");
+    const storedEmail = localStorage.getItem("email");
 
     function onSubmit(e) {
         e.preventDefault();
         const value = inputRef.current.value;
         navigate(`/?search=${value}`)
+    }
+
+    function logOut() {
+        localStorage.setItem("islogin", false)
+        navigate("/")
+        window.location.reload()
     }
 
     return (
@@ -23,7 +31,7 @@ export const NavigationBar = () => {
                             <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15"/>
                         </svg>
                     </button>
-                    <Link to="/saved">
+                    <Link to={storedLogin == "true" ? "/saved" : "/login"}>
                         <div className="rounded-lg bg-white p-3 hover:bg-gray-100 ms-3">
                             <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 14 20"><path d="M13 20a1 1 0 0 1-.64-.231L7 15.3l-5.36 4.469A1 1 0 0 1 0 19V2a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v17a1 1 0 0 1-1 1Z"/></svg>
                         </div>
@@ -134,14 +142,26 @@ export const NavigationBar = () => {
                             </div>
                         </li>
                         <li>
-                            <button className="flex items-center">
+                            <div className="flex items-center">
                                 <div className="rounded-lg bg-white p-3 hover:bg-gray-100">
                                     <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 14 18"><path d="M7 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm2 1H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z"/></svg>
                                 </div>
-                                <div id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbarLogin" className="flex items-center justify-between w-full py-2 px-3 mx-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto">
-                                    Anonymous
-                                    <svg className="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4"/></svg>
-                                </div>
+
+                                {
+                                    storedLogin == "true" ? (
+                                        <div id="dropdownNavbarLinkA" data-dropdown-toggle="dropdownNavbarLogout" className="flex items-center justify-between w-full py-2 px-3 mx-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto">
+                                            {storedEmail}
+                                            <svg className="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4"/></svg>
+                                        </div>
+                                    ) : (
+                                        <div id="dropdownNavbarLinkB" data-dropdown-toggle="dropdownNavbarLogin" className="flex items-center justify-between w-full py-2 px-3 mx-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto">
+                                            Anonymous
+                                            <svg className="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4"/></svg>
+                                        </div>
+                                    )
+                                }
+
+                                
                                 <div id="dropdownNavbarLogin" className="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow">
                                     <ul className="py-2 m-3 text-sm text-gray-700 space-y-[2vh]" aria-labelledby="dropdownLargeButton">
                                         <li>
@@ -152,7 +172,14 @@ export const NavigationBar = () => {
                                         </li>
                                     </ul>
                                 </div>
-                            </button>
+                                <div id="dropdownNavbarLogout" className="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow">
+                                    <ul className="py-2 m-3 text-sm text-gray-700 space-y-[2vh]" aria-labelledby="dropdownLargeButton">
+                                        <li>
+                                            <Link to="/" onClick={logOut} className="block px-4 py-2 hover:bg-gray-100 hover:rounded-lg">Logout</Link>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </li>
                     </ul>
                 </div>

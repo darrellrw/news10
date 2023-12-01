@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useSearchParams, useLocation } from "react-router-dom";
+import { useSearchParams, useLocation, useNavigate } from "react-router-dom";
 
 import { TitleArticle } from "../components/TitleArticle";
 import { ContentArticle } from "../components/ContentArticle";
@@ -8,6 +8,8 @@ import { WriterArticle } from "../components/WriterArticle";
 
 export default function ArticlePost() {
     const location = useLocation();
+    const storedLogin = localStorage.getItem("islogin");
+    const navigate = useNavigate();
 
     const [articles, setArticles] = useState([]);
     const [params, setParams] = useSearchParams();
@@ -15,24 +17,33 @@ export default function ArticlePost() {
     const savePost = (e) => {
         e.preventDefault();
 
-        const storedSaved = JSON.parse(localStorage.getItem("savedPage"));
+        if (storedLogin == "true") {
+            const storedSaved = JSON.parse(localStorage.getItem("savedPage"));
+    
+            if(location.state == null) {
+                if (!localStorage.getItem("savedPage").includes(JSON.stringify(articles[0])) && Array.isArray(storedSaved)) {
+                    storedSaved.push(articles[0])
+                    localStorage.setItem("savedPage", JSON.stringify(storedSaved))
+                    window.alert("Simpan Sukses");
+                } else {
+                    window.alert("Sudah disimpan");
+                    console.log("Ada")
+                }
+            }
+            else {
+                if (!localStorage.getItem("savedPage").includes(JSON.stringify(location.state)) && Array.isArray(storedSaved)) {
+                    storedSaved.push(location.state)
+                    localStorage.setItem("savedPage", JSON.stringify(storedSaved))
+                    window.alert("Simpan Sukses");
+                } else {
+                    window.alert("Sudah disimpan");
+                    console.log("Ada")
+                }
+            }
+        } else {
+            navigate("/login")
+        }
 
-        if(location.state == null) {
-            if (!localStorage.getItem("savedPage").includes(JSON.stringify(articles[0])) && Array.isArray(storedSaved)) {
-                storedSaved.push(articles[0])
-                localStorage.setItem("savedPage", JSON.stringify(storedSaved))
-            } else {
-                console.log("Ada")
-            }
-        }
-        else {
-            if (!localStorage.getItem("savedPage").includes(JSON.stringify(location.state)) && Array.isArray(storedSaved)) {
-                storedSaved.push(location.state)
-                localStorage.setItem("savedPage", JSON.stringify(storedSaved))
-            } else {
-                console.log("Ada")
-            }
-        }
     };
     
     useEffect(() => {        

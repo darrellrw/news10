@@ -20,7 +20,6 @@ export default function ArticleBoard() {
         }
         
         fetch(urlNews).then(response => response.json()).then(data => setArticles(data.results));
-        console.log(articles)
 
     }, [category, nation]);
 

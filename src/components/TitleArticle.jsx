@@ -1,15 +1,8 @@
-import { useEffect} from "react"
-import { initFlowbite } from 'flowbite'
 import { useNavigate } from "react-router-dom";
 
 export const TitleArticle = ({title}) => {
 
     const navigate = useNavigate();
-
-    useEffect(() => {
-        initFlowbite();
-        
-    }, []);
 
     return (
         <div className="box-border flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 w-full h-[164px] relative overflow-hidden gap-6">

@@ -31,6 +31,9 @@ const router = createBrowserRouter(
 function App() {
   useEffect(() => {
     initFlowbite();
+    if (!localStorage.getItem("savedPage")) {
+      localStorage.setItem("savedPage", JSON.stringify([]));
+    }
   }, []);
 
   return (

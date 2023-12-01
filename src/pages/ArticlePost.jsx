@@ -11,23 +11,54 @@ export default function ArticlePost() {
 
     const [articles, setArticles] = useState([]);
     const [params, setParams] = useSearchParams();
+
+    const savePost = (e) => {
+        e.preventDefault();
+
+        const storedSaved = JSON.parse(localStorage.getItem("savedPage"));
+
+        if(location.state == null) {
+            if (!localStorage.getItem("savedPage").includes(JSON.stringify(articles[0])) && Array.isArray(storedSaved)) {
+                storedSaved.push(articles[0])
+                localStorage.setItem("savedPage", JSON.stringify(storedSaved))
+            } else {
+                console.log("Ada")
+            }
+        }
+        else {
+            if (!localStorage.getItem("savedPage").includes(JSON.stringify(location.state)) && Array.isArray(storedSaved)) {
+                storedSaved.push(location.state)
+                localStorage.setItem("savedPage", JSON.stringify(storedSaved))
+            } else {
+                console.log("Ada")
+            }
+        }
+    };
     
     useEffect(() => {        
-        if(location.state == null) {
-            let urlNews = `https://newsdata.io/api/1/news?apikey=${import.meta.env.VITE_THE_KEYS}&qInTitle="${params.get("title").replace(/-/g, "%20")}"`
-            console.log("Hallo")
-            fetch(urlNews).then(response => response.json()).then(data => setArticles(data.results))
+        if (location.state == null) {
+            let urlNews = `https://newsdata.io/api/1/news?apikey=${import.meta.env.VITE_THE_KEYS}&qInTitle="${params.get("title").replace(/-/g, "%20")}"`;
+            fetch(urlNews).then(response => response.json()).then((data) => {
+                setArticles(data.results);
+            }).catch((error) => {
+                console.error('Error:', error);
+            });
         }
-    }, [articles, location.state, params]);
+    }, [params]);
 
     return (
         <>
-            <div className="flex flex-col justify-between xl:mx-[15%] md:mx-[10%] mx-[5%]">
-                <TitleArticle title={location.state.title == null ? articles[0].title : location.state.title}/>
-                <WriterArticle author={location.state.creator == null ? "A" : location.state.creator} publish={location.state.pubDate == null ? "A" : location.state.pubDate} url={location.state.link == null ? "A" : location.state.link}/>
-                <ContentArticle content={location.state.content == null ? "A" : location.state.content} image={location.state.image_url == null ? "A" : location.state.image_url} description={location.state.description == null ? "A": location.state.description}/>
-                <CommentArticle/>
-            </div>
+            {(location.state == null ? articles.length > 0 : true) && (
+                <div className="flex flex-col justify-between xl:mx-[15%] md:mx-[10%] mx-[5%]">
+                    <form onSubmit={savePost} className="p-5 2xl:text-right text-center">
+                        <input type="submit" value="Save" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"/>
+                    </form>
+                    <TitleArticle title={location.state === null ? articles[0].title : location.state.title}/>
+                    <WriterArticle author={location.state == null ? articles[0].creator : location.state.creator} publish={location.state == null ? articles[0].pubDate : location.state.pubDate} url={location.state == null ? articles[0].link : location.state.link}/>
+                    <ContentArticle content={location.state == null ? articles[0].content : location.state.content} image={location.state == null ? articles[0].image_url : location.state.image_url} description={location.state == null ? articles[0].description : location.state.description}/>
+                    <CommentArticle/>
+                </div>
+            )}
         </>
     )
 }

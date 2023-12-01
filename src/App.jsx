@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Category from './components/category'
+import Category from './components/category-card'
 import News from './components/news-card'
 import Trendypost from './components/trendypost_card'
 

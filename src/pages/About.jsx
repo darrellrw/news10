@@ -1,7 +1,7 @@
 import srcDarrell from "../assets/darrell.jpg"
 import srcDwiko from "../assets/Dwiko.jpeg"
 import srcBagus from "../assets/Bagus.jpeg"
-import srcCarol from "../asserts/carol.png"
+import srcCarol from "../assets/carol.png"
 
 function About() {
 

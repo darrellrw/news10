@@ -18,7 +18,7 @@ export const FooterBar = () => {
                                 <a href="#" className="hover:underline">Twitter</a>
                             </li>
                             <li>
-                                <a href="#" className="hover:underline">YouTube</a>
+                                <a href="https://youtube.com/@darrellrajendrawibowo9864?si=q6wRHBexTKE7xfnJ" className="hover:underline">YouTube</a>
                             </li>
                         </ul>
                     </div>

@@ -42,11 +42,11 @@ function SavedPost() {
 
     return (
         <>  
-            <div className="xl:mx-[15%] md:mx-[10%] mx-[5%]">
+            <div className="flex flex-col justify-between xl:mx-[15%] md:mx-[10%] mx-[5%]">
                 <div className="p-5 text-center">
-                    <h1 className="text-5xl">Saved Article</h1>
+                    <h1 className="text-5xl p-5">Saved Article</h1>
                 </div>
-                <div>
+                <div className="items-center m-auto">
                     {
                         storedSaved.length == 0 ? (
                             <p>Empty</p>
@@ -64,7 +64,7 @@ function SavedPost() {
                         )
                     }
                 </div>
-                <nav aria-label="Page navigation example">
+                <nav className="items-center m-auto py-5" aria-label="Page navigation example">
                     <ul className="flex items-center -space-x-px h-10 text-base">
                         <li>
                             <a onClick={prevPage} className="flex items-center justify-center px-4 h-10 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700">

@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react"
 import { useSearchParams, useLocation, useNavigate } from "react-router-dom";
 
-import { TitleArticle } from "../components/TitleArticle";
-import { ContentArticle } from "../components/ContentArticle";
-import { CommentArticle } from "../components/CommentArticle";
-import { WriterArticle } from "../components/WriterArticle";
+import { TitleArticle } from "../components/article/TitleArticle";
+import { ContentArticle } from "../components/article/ContentArticle";
+import { WriterArticle } from "../components/article/WriterArticle";
 
 export default function ArticlePost() {
     const location = useLocation();
@@ -22,7 +21,7 @@ export default function ArticlePost() {
     
             if(location.state == null) {
                 if (!localStorage.getItem("savedPage").includes(JSON.stringify(articles[0])) && Array.isArray(storedSaved)) {
-                    storedSaved.push(articles[0])
+                    storedSaved.unshift(articles[0])
                     localStorage.setItem("savedPage", JSON.stringify(storedSaved))
                     window.alert("Simpan Sukses");
                 } else {
@@ -32,7 +31,7 @@ export default function ArticlePost() {
             }
             else {
                 if (!localStorage.getItem("savedPage").includes(JSON.stringify(location.state)) && Array.isArray(storedSaved)) {
-                    storedSaved.push(location.state)
+                    storedSaved.unshift(location.state)
                     localStorage.setItem("savedPage", JSON.stringify(storedSaved))
                     window.alert("Simpan Sukses");
                 } else {
@@ -67,7 +66,6 @@ export default function ArticlePost() {
                     <TitleArticle title={location.state === null ? articles[0].title : location.state.title}/>
                     <WriterArticle author={location.state == null ? articles[0].creator : location.state.creator} publish={location.state == null ? articles[0].pubDate : location.state.pubDate} url={location.state == null ? articles[0].link : location.state.link}/>
                     <ContentArticle content={location.state == null ? articles[0].content : location.state.content} image={location.state == null ? articles[0].image_url : location.state.image_url} description={location.state == null ? articles[0].description : location.state.description}/>
-                    <CommentArticle/>
                 </div>
             )}
         </>

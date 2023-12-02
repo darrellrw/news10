@@ -15,11 +15,11 @@ export const ContentArticle = ({content, image, description}) => {
                 </div>
             </div>
             <div className="box-border flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative pt-5 pb-4">
-                <p className="whitespace-pre-wrap flex-grow-0 flex-shrink-0 self-stretch font-['Roboto'] text-xl leading-[1.4] font-bold text-left text-black">
+                <p className="whitespace-pre-wrap flex-grow-0 flex-shrink-0 self-stretch font-['Roboto'] text-xl leading-[1.4] text-left text-black">
                 {description}
                 </p>
             </div>
-            <div className="box-border flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative pb-4">
+            <div className="box-border flex flex-col justify-start items-start self-stretch flex-grow-0 flex-shrink-0 relative pb-[5%]">
                 <p className="whitespace-pre-wrap flex-grow-0 flex-shrink-0 self-stretch font-['Roboto'] text-base leading-[1.5] text-left text-black">
                 {content}
                 </p>

@@ -5,7 +5,7 @@ import { createBrowserRouter, createRoutesFromElements, RouterProvider, Route } 
 
 import RootLayout from './layouts/RootLayout'
 
-import ArticleBoard from './components/ArticleBoard'
+import ArticleBoard from './pages/ArticleBoard'
 import ArticlePost from './pages/ArticlePost'
 
 import About from './pages/About'

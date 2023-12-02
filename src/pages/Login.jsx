@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -16,6 +19,8 @@ const Login = () => {
       }
       if (email === storedEmail && password === storedPassword) {
         localStorage.setItem("islogin", true);
+        navigate("/");
+        window.location.reload();
         window.alert("Login Sukses");
       } else {
         window.alert("Email atau password tidak valid!");

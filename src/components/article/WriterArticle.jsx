@@ -1,11 +1,4 @@
-import { useEffect} from "react"
-import { initFlowbite } from 'flowbite' 
-
 export const WriterArticle = ({author, publish, url}) => {
-
-    useEffect(() => {
-        initFlowbite();
-    }, []);
 
     return (
         <div className="box-border flex justify-start items-center flex-grow-0 flex-shrink-0 w-[231px] h-12 relative gap-4">

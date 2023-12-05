@@ -8,11 +8,12 @@ import srcEntertainment from "../assets/category/entertainment.jpg";
 import srcSports from "../assets/category/sports.jpg";
 import srcBusiness from "../assets/category/business.jpeg";
 import srcFood from "../assets/category/food.png";
+import { ArticleDrawer } from "../components/ArticleDrawer";
 
 export default function ArticleBoard() {
     const [articles, setArticles] = useState([]);
+    const [articlesDrawer, setArticlesDrawer] = useState([]);
     const [params, setParams] = useSearchParams();
-    const [apiCalled, setApiCalled] = useState(false);
     const category = params.get("category") == null ? "top": params.get("category");
     const nation = params.get("nation") == null ? "us": params.get("nation");
     const search = params.get("search") == null ? null : params.get("search");
@@ -25,42 +26,37 @@ export default function ArticleBoard() {
     ]
 
     useEffect(() => {
-        if (category == null && search == null) {
-            console.log("Yes");
 
-            let urlone = `https://newsdata.io/api/1/news?apikey=${import.meta.env.VITE_THE_KEYS1}&country=us&category=top`
+        let urlNews = "";
 
-            fetch(urlone).then((response) => {
-                if (response.status === 200) {
-                    return response.json();
-                }
-                else {
-                    console.error(response.status);
-                }
-            }).then(data => setArticles(data.results));
-        } 
-        
-        else {
-            let urlNews = "";
+        console.log("No");
 
-            console.log("No");
-    
-            if (search == null) {
-                urlNews = `https://newsdata.io/api/1/news?apikey=${import.meta.env.VITE_THE_KEYS}&country=${nation}&category=${category}`
-            } else {
-                urlNews = `https://newsdata.io/api/1/news?apikey=${import.meta.env.VITE_THE_KEYS}&qInTitle=${search}`
-            }
-        
-    
-            fetch(urlNews).then((response) => {
-                if (response.status === 200) {
-                    return response.json();
-                }
-                else {
-                    console.error(response.status);
-                }
-            }).then(data => setArticles(data.results));
+        if (search == null) {
+            urlNews = `https://newsdata.io/api/1/news?apikey=${import.meta.env.VITE_THE_KEYS_1}&country=${nation}&category=${category}`
+        } else {
+            urlNews = `https://newsdata.io/api/1/news?apikey=${import.meta.env.VITE_THE_KEYS}&qInTitle=${search}`
         }
+
+        
+        fetch(urlNews).then((response) => {
+            if (response.status === 200) {
+                return response.json();
+            }
+            else {
+                console.error(response.status);
+            }
+        }).then(data => setArticles(data.results));
+
+        let urlTwo = `https://newsdata.io/api/1/news?apikey=${import.meta.env.VITE_THE_KEYS_2}&country=gb&category=top`
+        fetch(urlTwo).then((responseTwo) => {
+            if (responseTwo.status === 200) {
+                return responseTwo.json();
+            }
+            else {
+                console.error(responseTwo.status);
+            }
+        }).then(dataTwo => setArticlesDrawer(dataTwo.results));
+        
     }, [category, nation, search]);
 
     return (
@@ -77,9 +73,12 @@ export default function ArticleBoard() {
                                 ))}
                             </div>
                             <div className="items-center m-auto">
+
+                                {search == null ? <ArticleDrawer news={articlesDrawer}/> : null}
+
                                 <h1 className="text-3xl py-5">
                                     {
-                                        params.get("search") == null && params.get("category") == null ? "Trending Post" : (params.get("category") == null ? "Search: " + params.get("search") : "Search: " + params.get("category"))
+                                        search == null ? "Trending Post" : "Search: " + search
                                     }
                                 </h1>
                                 {

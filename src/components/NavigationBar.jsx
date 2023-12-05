@@ -44,7 +44,7 @@ export const NavigationBar = () => {
                                 Categories
                                 <svg className="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4"/></svg>
                             </button>
-                            <div id="dropdownNavbarCategories" className="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow">
+                            <div id="dropdownNavbarCategories" className="absolute z-[1000] hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow">
                                 <div className='flex items-center pt-2'>
                                     <a className="text-xl text-black m-auto">Categories</a>
                                 </div>
